@@ -1,4 +1,4 @@
-package com.ksuryawa.factories;
+package com.ksuryawa.config.factory;
 
 import com.ksuryawa.config.IFrameworkConfig;
 import org.aeonbits.owner.ConfigCache;
