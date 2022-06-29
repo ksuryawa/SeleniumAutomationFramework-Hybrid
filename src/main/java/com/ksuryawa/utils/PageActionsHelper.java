@@ -1,4 +1,4 @@
-package com.ksuryawa.pages;
+package com.ksuryawa.utils;
 
 import com.ksuryawa.constants.FrameworkConstants;
 import com.ksuryawa.driver.DriverManager;
@@ -17,7 +17,7 @@ import java.util.Objects;
  * @author Kapil Suryawanshi
  * 20/06/2022
  */
-public class BasePage {
+public class PageActionsHelper {
 
 	//region Navigation
 	protected void enterUrl(String url) {
@@ -68,7 +68,7 @@ public class BasePage {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
 				.until(ExpectedConditions.elementToBeClickable(elementLocator));
 		element.click();
-
+		ExtentLogger.info( "Button " + element.getText() + " clicked");
 	}
 
 	//endregion
@@ -78,7 +78,7 @@ public class BasePage {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
 				.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
 		element.sendKeys(text);
-		ExtentLogger.info(" isn entered ");
+		ExtentLogger.info( "Text " + text + " entered on " + element.getText());
 	}
 
 	protected void sendKeysAndTab(By elementLocator, String text) {
