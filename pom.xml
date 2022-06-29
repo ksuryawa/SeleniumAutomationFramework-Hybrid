@@ -4,9 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ksuryawa</groupId>
-    <artifactId>Selenium-Java-TestNG-Hybrid-Framework</artifactId>
+    <groupId>com.ksuryawa</groupId>
+    <artifactId>SeleniumAutomationFramework-Hybrid</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>SeleniumAutomationFramework-Hybrid</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -20,7 +21,8 @@
         <owner.version>1.0.12</owner.version>
         <extentreports.version>5.0.9</extentreports.version>
         <aspectj.version>1.9.9.1</aspectj.version>
-        <test-data-supplier.version>1.9.6</test-data-supplier.version>
+        <zero-cell.version>0.5.1</zero-cell.version>
+        <commons-io.version>2.11.0</commons-io.version>
     </properties>
 
     <dependencies>
@@ -73,17 +75,29 @@
             <version>${extentreports.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.github.sskorol/test-data-supplier -->
-        <dependency>
-            <groupId>io.github.sskorol</groupId>
-            <artifactId>test-data-supplier</artifactId>
-            <version>${test-data-supplier.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.creditdatamw.labs/zerocell-core -->
+        <dependency>
+            <groupId>com.creditdatamw.labs</groupId>
+            <artifactId>zerocell-core</artifactId>
+            <version>${zero-cell.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
         </dependency>
 
     </dependencies>
