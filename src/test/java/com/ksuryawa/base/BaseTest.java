@@ -1,4 +1,4 @@
-package com.ksuryawa.tests;
+package com.ksuryawa.base;
 
 import com.ksuryawa.driver.Driver;
 import org.testng.annotations.AfterMethod;
