@@ -1,7 +1,7 @@
 package com.ksuryawa.constants;
 
 import com.ksuryawa.config.IFrameworkConfig;
-import com.ksuryawa.factories.ConfigFactory;
+import com.ksuryawa.config.factory.ConfigFactory;
 
 /**
  * Framework Constants holds all the constant values used within the framework. If some value needs to be changed
@@ -25,6 +25,16 @@ public final class FrameworkConstants {
 
 	private static final int EXPLICIT_WAIT = 10;
 	private static final String EXTENT_REPORT_FOLDER_PATH=System.getProperty("user.dir")+"/extent-test-output/";
+
+	private static final String RESOURCES_PATH = System.getProperty("user.dir")+"/src/test/resources";
+
+	private static final String TEST_DATA_EXCEL_PATH = RESOURCES_PATH+"/testdata.xlsx";
+
+	private static final String RUNMANGER_SHEET = "RUNMANAGER";
+	private static final String ITERATION_DATA_SHEET = "DATA";
+
+	private static final Integer MAX_RETRY_COUNT = 1;
+
 	private static String extentReportFilePath = "";
 
 
@@ -41,7 +51,28 @@ public final class FrameworkConstants {
 
 	private static String createReportPath()
 	{
-		return EXTENT_REPORT_FOLDER_PATH+"/index.html";
+		if(Boolean.FALSE.equals(ConfigFactory.getConfig().overrideReports()))
+		{
+			return EXTENT_REPORT_FOLDER_PATH+System.currentTimeMillis()+"/index.html";
+		}
+		else {
+			return EXTENT_REPORT_FOLDER_PATH+"/index.html";
+		}
 	}
 
+	public static String getTestDataExcelPath() {
+		return TEST_DATA_EXCEL_PATH;
+	}
+
+	public static String getRunmangerDatasheet() {
+		return RUNMANGER_SHEET;
+	}
+
+	public static String getIterationDatasheet() {
+		return ITERATION_DATA_SHEET;
+	}
+
+	public static Integer getMaxRetryCount() {
+		return MAX_RETRY_COUNT;
+	}
 }

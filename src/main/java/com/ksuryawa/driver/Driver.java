@@ -1,8 +1,11 @@
 package com.ksuryawa.driver;
 
-import com.ksuryawa.factories.ConfigFactory;
+import com.ksuryawa.config.factory.ConfigFactory;
+import com.ksuryawa.enums.BrowserType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.Objects;
 
@@ -32,11 +35,19 @@ public class Driver {
 	 * @author Kapil Suryawanshi
 	 */
 	public static void initDriver() {
-		if (Objects.isNull(DriverManager.getDriver())) {
-
-			WebDriverManager.chromedriver().setup();
-			DriverManager.setDriver(new ChromeDriver());
-
+		if (Objects.isNull(DriverManager.getDriver()))
+		{
+			if(ConfigFactory.getConfig().browser().equals(BrowserType.CHROME))
+			{
+				WebDriverManager.chromedriver().setup();
+				DriverManager.setDriver(new ChromeDriver());
+			} else if (ConfigFactory.getConfig().browser().equals(BrowserType.FIREFOX)) {
+				WebDriverManager.firefoxdriver().setup();
+				DriverManager.setDriver(new FirefoxDriver());
+			}else if (ConfigFactory.getConfig().browser().equals(BrowserType.SAFARI)) {
+				WebDriverManager.safaridriver().setup();
+				DriverManager.setDriver(new SafariDriver());
+			}
 			DriverManager.getDriver().get(ConfigFactory.getConfig().url());
 		}
 	}
