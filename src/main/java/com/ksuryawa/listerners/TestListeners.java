@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
  * @author Kapil Suryawanshi
  * 22/06/2022
  */
-public class ListenersClass implements ITestListener, ISuiteListener {
+public class TestListeners implements ITestListener, ISuiteListener {
 	/**
 	 *Initialise the reports with the file name
 	 * @see com.ksuryawa.reports.ExtentReport
@@ -56,7 +56,7 @@ public class ListenersClass implements ITestListener, ISuiteListener {
 	 */
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		ExtentLogger.pass(result.getName() + " is passed");
+		ExtentLogger.pass(result.getName() + " is passed",true);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class ListenersClass implements ITestListener, ISuiteListener {
 	 */
 	@Override
 	public void onTestFailure(ITestResult result) {
-		ExtentLogger.fail(result.getName() + " is failed");
+		ExtentLogger.fail(result.getName() + " is failed",true);
 		ExtentLogger.info(result.getThrowable().toString());
 	}
 
