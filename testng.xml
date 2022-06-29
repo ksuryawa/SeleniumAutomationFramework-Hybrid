@@ -2,13 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <listeners>
-        <listener class-name="com.ksuryawa.listerners.ListenersClass"/>
+        <listener class-name="com.ksuryawa.listerners.TestListeners"/>
+        <listener class-name="com.ksuryawa.listerners.MethodInterceptor"/>
+        <listener class-name="com.ksuryawa.listerners.AnnotationTransformer"/>
     </listeners>
     <test thread-count="2" parallel="methods" name="SeleniumAutomationFramework-Hybrid">
         <classes>
             <class name="com.ksuryawa.tests.LoginTest">
                 <methods>
                     <include name="loginLogoutTest"/>
+                    <include name="newTest"/>
                 </methods>
             </class>
         </classes>
