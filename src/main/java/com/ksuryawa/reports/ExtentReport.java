@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.ksuryawa.constants.FrameworkConstants;
+import com.ksuryawa.enums.CategoryType;
 
 import java.awt.*;
 import java.io.File;
@@ -18,7 +19,7 @@ import java.util.Objects;
  * @author Kapil Suryawanshi
  * 22/06/2022
  *
- * @see com.ksuryawa.listeners.ListenerClass
+ * @see com.ksuryawa.listeners.TestListener
  * @see com.ksuryawa.annotations.FrameworkAnnotation
  */
 public final class ExtentReport {
@@ -75,4 +76,32 @@ private ExtentReport(){}
 		ExtentManager.setExtentTest(extent.createTest(testCaseName));
 	}
 
+
+	/**
+	 * Logs the authors details in the authors view in the extent report.
+	 * Gives an clear idea of Authors Vs Percentage success metrics
+	 *
+	 * @param authors Authors who created a particular test case
+	 * @author Kapil Suryawanshi
+	 * Jun 18, 2022
+	 */
+	public static void addAuthor(String[] authors) {
+		for (String author : authors) {
+			ExtentManager.getExtentTest().assignAuthor(author);
+		}
+	}
+
+	/**
+	 * Adds the category a particular test case belongs to.
+	 * Gives an clear idea of Group Vs Percentage success metrics.
+	 *
+	 * @param categories category a particular test case belongs to.
+	 * @author Kapil Suryawanshi
+	 * Jun 18, 2022
+	 */
+	public static void addCategory(CategoryType[] categories) {
+		for (CategoryType category : categories) {
+			ExtentManager.getExtentTest().assignCategory(category.toString());
+		}
+	}
 }
