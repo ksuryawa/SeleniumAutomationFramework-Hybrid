@@ -1,9 +1,9 @@
 package com.ksuryawa.listerners;
 
+import com.ksuryawa.annotations.FrameworkAnnotations;
 import com.ksuryawa.reports.ExtentLogger;
 import com.ksuryawa.reports.ExtentReport;
 import org.testng.*;
-import org.testng.annotations.Test;
 
 /**
  * Implements {@link org.testng.ITestListener} and {@link org.testng.ISuiteListener} to leverage the abstract methods
@@ -39,14 +39,19 @@ public class TestListeners implements ITestListener, ISuiteListener {
 	 */
 	@Override
 	public void onTestStart(ITestResult result) {
-		String description = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Test.class).description();
+		String description = result.getMethod().getDescription();
 
 		if (description.isEmpty() || description.isBlank()) {
 			ExtentReport.createTest(result.getName());
-
-		} else {
+		}
+		else {
 			ExtentReport.createTest(description);
 		}
+
+		FrameworkAnnotations annotations = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(FrameworkAnnotations.class);
+
+		ExtentReport.addAuthor(annotations.author());
+		ExtentReport.addCategory(annotations.category());
 	}
 
 	/**
