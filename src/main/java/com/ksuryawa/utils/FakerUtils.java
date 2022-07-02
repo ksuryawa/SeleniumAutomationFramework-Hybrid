@@ -58,4 +58,28 @@ public final class FakerUtils {
 		return faker.internet().emailAddress();
 	}
 
+	static String getAddress() {
+		return faker.address().fullAddress();
+	}
+	static String getCity() {
+		return faker.address().city();
+	}
+	static String getState() {
+		return faker.address().state();
+	}
+	static String getZip() {
+		return faker.address().zipCode();
+	}
+
+	static String getCountry() {
+		return faker.address().country();
+	}
+
+	static String getPhoneNumber() {
+		return faker.phoneNumber().phoneNumber();
+	}
+
+	static String getSSN() {
+		return faker.idNumber().ssnValid();
+	}
 }

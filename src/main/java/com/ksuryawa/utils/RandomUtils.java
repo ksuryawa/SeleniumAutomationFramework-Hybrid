@@ -32,4 +32,34 @@ public final class RandomUtils {
 		return FakerUtils.getEmail();
 	}
 
+	public static String getAddress() {
+		return FakerUtils.getAddress();
+	}
+
+	public static String getCity() {
+		return FakerUtils.getCity();
+	}
+
+	public static String getState() {
+		return FakerUtils.getState();
+	}
+
+	public static String getZip() {
+		return FakerUtils.getZip();
+	}
+
+	public static String getCountry() {
+		return FakerUtils.getCountry();
+	}
+
+	public static String getPhoneNumber() {
+		return FakerUtils.getPhoneNumber();
+	}
+
+	public static String getSSN() {
+		return FakerUtils.getSSN();
+	}
+
+
+
 }
