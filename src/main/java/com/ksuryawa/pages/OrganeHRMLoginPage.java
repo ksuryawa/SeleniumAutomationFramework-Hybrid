@@ -1,13 +1,14 @@
 package com.ksuryawa.pages;
 
-import com.ksuryawa.reports.ExtentLogger;
+import com.ksuryawa.utils.DecodeUtils;
+import com.ksuryawa.utils.PageActionsHelper;
 import org.openqa.selenium.By;
 
 /**
  * @author Kapil Suryawanshi
  * 20/06/2022
  */
-public final class OrganeHRMLoginPage extends BasePage {
+public final class OrganeHRMLoginPage extends PageActionsHelper {
 
 
 	private static final By txtUserName = By.id("txtUsername");
@@ -15,19 +16,17 @@ public final class OrganeHRMLoginPage extends BasePage {
 	private static final By btnLogin = By.id("btnLogin");
 
 	public OrganeHRMLoginPage enterUserName(String userName) {
-		sendKeys(txtUserName, userName);
-		ExtentLogger.pass( userName + " entered on page");
+		sendKeys(txtUserName, userName,"Username");
 		return this;
 	}
 
 	public OrganeHRMLoginPage enterPassword(String password) {
-		sendKeys(txtPassword, password);
-		ExtentLogger.pass( password + " entered on page");
+		sendKeys(txtPassword, DecodeUtils.getDecodedString(password),"Password");
 		return this;
 	}
 
 	public OrangeHRMHomePage clickOnLoginButton() {
-		click(btnLogin);
+		click(btnLogin, "Login Button");
 		return new OrangeHRMHomePage();
 	}
 

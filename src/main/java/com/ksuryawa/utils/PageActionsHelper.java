@@ -68,7 +68,15 @@ public class PageActionsHelper {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
 				.until(ExpectedConditions.elementToBeClickable(elementLocator));
 		element.click();
-		ExtentLogger.info( "Button " + element.getText() + " clicked");
+
+	}
+
+	protected void click(By elementLocator,String elementName) {
+		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
+				.until(ExpectedConditions.elementToBeClickable(elementLocator));
+		element.click();
+		ExtentLogger.pass(elementName+" is clicked");
+
 	}
 
 	//endregion
@@ -80,7 +88,12 @@ public class PageActionsHelper {
 		element.sendKeys(text);
 		ExtentLogger.info( "Text " + text + " entered on " + element.getText());
 	}
-
+	protected void sendKeys(By elementLocator, String text,String elementName) {
+		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
+				.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
+		element.sendKeys(text);
+		ExtentLogger.pass( text + " entered successfully in " + elementName);
+	}
 	protected void sendKeysAndTab(By elementLocator, String text) {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
 				.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));

@@ -1,12 +1,13 @@
 package com.ksuryawa.pages;
 
+import com.ksuryawa.utils.PageActionsHelper;
 import org.openqa.selenium.By;
 
 /**
  * @author Kapil Suryawanshi
  * 20/06/2022
  */
-public final class OrangeHRMHomePage extends BasePage {
+public final class OrangeHRMHomePage extends PageActionsHelper {
 
 	//region Elements
 	private final By linkWelcome = By.id("welcome");
@@ -16,12 +17,12 @@ public final class OrangeHRMHomePage extends BasePage {
 
 	//region Methods
 	public OrangeHRMHomePage clickWelcome() {
-		click(linkWelcome);
+	click(linkWelcome, "Welcome link");
 		return this;
 	}
 
 	public OrganeHRMLoginPage clickLogout() {
-		click(linkLogout);
+		click(linkLogout, "Logout button");
 		return new OrganeHRMLoginPage();
 	}
 	//endregion
