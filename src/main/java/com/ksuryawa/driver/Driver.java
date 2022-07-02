@@ -34,21 +34,22 @@ public class Driver {
 	 *
 	 * @author Kapil Suryawanshi
 	 */
-	public static void initDriver() {
+	public static void initDriver(BrowserType browser) {
 		if (Objects.isNull(DriverManager.getDriver()))
 		{
-			if(ConfigFactory.getConfig().browser().equals(BrowserType.CHROME))
+			if(browser.equals(BrowserType.CHROME))
 			{
 				WebDriverManager.chromedriver().setup();
 				DriverManager.setDriver(new ChromeDriver());
-			} else if (ConfigFactory.getConfig().browser().equals(BrowserType.FIREFOX)) {
+			} else if (browser.equals(BrowserType.FIREFOX)) {
 				WebDriverManager.firefoxdriver().setup();
 				DriverManager.setDriver(new FirefoxDriver());
-			}else if (ConfigFactory.getConfig().browser().equals(BrowserType.SAFARI)) {
+			}else if (browser.equals(BrowserType.SAFARI)) {
 				WebDriverManager.safaridriver().setup();
 				DriverManager.setDriver(new SafariDriver());
 			}
 			DriverManager.getDriver().get(ConfigFactory.getConfig().url());
+			DriverManager.getDriver().manage().window().maximize();
 		}
 	}
 
