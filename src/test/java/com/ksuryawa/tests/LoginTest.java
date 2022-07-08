@@ -33,6 +33,7 @@ public final class LoginTest extends BaseTest {
 				.isNotEmpty();
 	}
 
+	@FrameworkAnnotations
 	@Test
 	public void newTest(TestData data) {
 
