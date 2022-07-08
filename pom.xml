@@ -23,6 +23,7 @@
         <aspectj.version>1.9.9.1</aspectj.version>
         <zero-cell.version>0.5.1</zero-cell.version>
         <commons-io.version>2.11.0</commons-io.version>
+        <restassured.version>5.1.1</restassured.version>
     </properties>
 
     <dependencies>
@@ -98,6 +99,12 @@
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>${javafaker.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restassured.version}</version>
         </dependency>
 
     </dependencies>
