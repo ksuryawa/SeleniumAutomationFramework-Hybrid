@@ -1,10 +1,14 @@
 package com.ksuryawa.listerners;
 
 import com.ksuryawa.annotations.FrameworkAnnotations;
-import com.ksuryawa.reports.ExtentLogger;
+import com.ksuryawa.enums.LogType;
 import com.ksuryawa.reports.ExtentReport;
 import com.ksuryawa.utils.ELKUtils;
 import org.testng.*;
+
+import java.util.Arrays;
+
+import static com.ksuryawa.reports.FrameworkLogger.log;
 
 /**
  * Implements {@link org.testng.ITestListener} and {@link org.testng.ISuiteListener} to leverage the abstract methods
@@ -58,33 +62,34 @@ public class TestListeners implements ITestListener, ISuiteListener {
 	/**
 	 * Marks the test as pass and logs it in the report
 	 *
-	 * @see com.ksuryawa.reports.ExtentLogger
+	 * @see com.ksuryawa.reports.FrameworkLogger
 	 */
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		ExtentLogger.pass(result.getMethod().getDescription() + " is passed",true);
+		log(LogType.PASS,result.getMethod().getMethodName() + " is passed");
 		ELKUtils.sendDetailsToElk(result.getMethod().getDescription(),"Pass");
 	}
 
 	/**
 	 * Marks the test as fail,append base64 screenshot and logs it in the report
 	 *
-	 * @see com.ksuryawa.reports.ExtentLogger
+	 * @see com.ksuryawa.reports.FrameworkLogger
 	 */
 	@Override
 	public void onTestFailure(ITestResult result) {
-		ExtentLogger.fail(result.getMethod().getDescription() + " is failed",true);
-		ExtentLogger.info(result.getThrowable().toString());
+		log(LogType.FAIL,result.getMethod().getMethodName() + " is failed");
+		log(LogType.FAIL,result.getThrowable().toString());
+		log(LogType.FAIL, Arrays.toString(result.getThrowable().getStackTrace()));
 		ELKUtils.sendDetailsToElk(result.getMethod().getDescription(),"Fail");
 	}
 
 	/**
 	 * Marks the test as skip and logs it in the report
-	 * @see com.ksuryawa.reports
+	 * @see com.ksuryawa.reports.FrameworkLogger
 	 */
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		ExtentLogger.skip(result.getMethod().getDescription() + " is skipped");
+		log(LogType.SKIP,result.getMethod().getDescription() + " is skipped");
 		ELKUtils.sendDetailsToElk(result.getMethod().getDescription(),"Skip");
 	}
 

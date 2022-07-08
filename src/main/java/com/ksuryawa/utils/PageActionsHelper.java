@@ -2,7 +2,7 @@ package com.ksuryawa.utils;
 
 import com.ksuryawa.constants.FrameworkConstants;
 import com.ksuryawa.driver.DriverManager;
-import com.ksuryawa.reports.ExtentLogger;
+import com.ksuryawa.enums.LogType;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
+
+import static com.ksuryawa.reports.FrameworkLogger.log;
 
 /**
  * @author Kapil Suryawanshi
@@ -75,7 +77,8 @@ public class PageActionsHelper {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
 				.until(ExpectedConditions.elementToBeClickable(elementLocator));
 		element.click();
-		ExtentLogger.pass(elementName+" is clicked");
+
+		log(LogType.PASS,elementName+" is clicked");
 
 	}
 
@@ -86,13 +89,14 @@ public class PageActionsHelper {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
 				.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
 		element.sendKeys(text);
-		ExtentLogger.info( "Text " + text + " entered on " + element.getText());
 	}
+
 	protected void sendKeys(By elementLocator, String text,String elementName) {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
 				.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
 		element.sendKeys(text);
-		ExtentLogger.pass( text + " entered successfully in " + elementName);
+
+		log(LogType.PASS,text + " entered successfully in " + elementName);
 	}
 	protected void sendKeysAndTab(By elementLocator, String text) {
 		WebElement element = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))
