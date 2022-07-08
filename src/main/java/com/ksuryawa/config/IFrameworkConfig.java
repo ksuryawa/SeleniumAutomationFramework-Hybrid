@@ -22,7 +22,7 @@ public interface IFrameworkConfig extends Config {
 
 	String url();
 
-	@DefaultValue("CHROME")
+	@DefaultValue("chrome")
 	@ConverterClass(StringToBrowserTypeConverter.class)
 	BrowserType browser();
 
@@ -38,4 +38,14 @@ public interface IFrameworkConfig extends Config {
 	@ConverterClass(StringToBooleanConverter.class)
 	Boolean retryfailedtests();
 
+	@DefaultValue("local")
+	@Key("runmode")
+	String runMode();
+
+	@Key("seleniumgridurl")
+	String remoteUrl();
+
+	String sendresulttoelk();
+
+	String elasticurl();
 }
