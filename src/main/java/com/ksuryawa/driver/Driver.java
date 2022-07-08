@@ -2,11 +2,9 @@ package com.ksuryawa.driver;
 
 import com.ksuryawa.config.factory.ConfigFactory;
 import com.ksuryawa.enums.BrowserType;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import com.ksuryawa.exceptions.BrowserInvocationFailedException;
 
+import java.net.MalformedURLException;
 import java.util.Objects;
 
 /**
@@ -37,16 +35,10 @@ public class Driver {
 	public static void initDriver(BrowserType browser) {
 		if (Objects.isNull(DriverManager.getDriver()))
 		{
-			if(browser.equals(BrowserType.CHROME))
-			{
-				WebDriverManager.chromedriver().setup();
-				DriverManager.setDriver(new ChromeDriver());
-			} else if (browser.equals(BrowserType.FIREFOX)) {
-				WebDriverManager.firefoxdriver().setup();
-				DriverManager.setDriver(new FirefoxDriver());
-			}else if (browser.equals(BrowserType.SAFARI)) {
-				WebDriverManager.safaridriver().setup();
-				DriverManager.setDriver(new SafariDriver());
+			try {
+				DriverManager.setDriver(DriverFactory.getDriver(browser.toString()));
+			} catch (MalformedURLException e) {
+				throw new BrowserInvocationFailedException("Please check the capabilities of browser");
 			}
 			DriverManager.getDriver().get(ConfigFactory.getConfig().url());
 			DriverManager.getDriver().manage().window().maximize();
@@ -60,7 +52,8 @@ public class Driver {
 	 * @author Kapil Suryawanshi
 	 */
 	public static void quitDriver() {
-		if (!Objects.isNull(DriverManager.getDriver())) {
+		if (Objects.nonNull(DriverManager.getDriver())) {
+
 			DriverManager.getDriver().quit();
 			DriverManager.unload();
 		}
