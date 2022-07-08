@@ -3,6 +3,7 @@ package com.ksuryawa.listerners;
 import com.ksuryawa.annotations.FrameworkAnnotations;
 import com.ksuryawa.reports.ExtentLogger;
 import com.ksuryawa.reports.ExtentReport;
+import com.ksuryawa.utils.ELKUtils;
 import org.testng.*;
 
 /**
@@ -61,7 +62,8 @@ public class TestListeners implements ITestListener, ISuiteListener {
 	 */
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		ExtentLogger.pass(result.getName() + " is passed",true);
+		ExtentLogger.pass(result.getMethod().getDescription() + " is passed",true);
+		ELKUtils.sendDetailsToElk(result.getMethod().getDescription(),"Pass");
 	}
 
 	/**
@@ -71,8 +73,9 @@ public class TestListeners implements ITestListener, ISuiteListener {
 	 */
 	@Override
 	public void onTestFailure(ITestResult result) {
-		ExtentLogger.fail(result.getName() + " is failed",true);
+		ExtentLogger.fail(result.getMethod().getDescription() + " is failed",true);
 		ExtentLogger.info(result.getThrowable().toString());
+		ELKUtils.sendDetailsToElk(result.getMethod().getDescription(),"Fail");
 	}
 
 	/**
@@ -81,7 +84,8 @@ public class TestListeners implements ITestListener, ISuiteListener {
 	 */
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		ExtentLogger.skip(result.getName() + " is skipped");
+		ExtentLogger.skip(result.getMethod().getDescription() + " is skipped");
+		ELKUtils.sendDetailsToElk(result.getMethod().getDescription(),"Skip");
 	}
 
 	@Override
