@@ -36,7 +36,7 @@ public final class DriverFactory {
 	 *
 	 */
 
-	public static WebDriver getDriver(String browser) throws MalformedURLException {
+	public static WebDriver getDriver(String browser,String version) throws MalformedURLException {
 
 		WebDriver driver = null;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -47,6 +47,7 @@ public final class DriverFactory {
 			if (runMode.equalsIgnoreCase(String.valueOf(RunMode.REMOTE)))
 			{
 				capabilities.setBrowserName("chrome");
+				capabilities.setVersion(version);
 				driver = new RemoteWebDriver(new URL(ConfigFactory.getConfig().remoteUrl()), capabilities);
 			} else {
 				WebDriverManager.chromedriver().setup();
@@ -57,6 +58,7 @@ public final class DriverFactory {
 		{
 			if (runMode.equalsIgnoreCase(String.valueOf(RunMode.REMOTE))) {
 				capabilities.setBrowserName("firefox");
+				capabilities.setVersion(version);
 				driver = new RemoteWebDriver(new URL(ConfigFactory.getConfig().remoteUrl()), capabilities);
 			} else {
 				WebDriverManager.firefoxdriver().setup();
@@ -66,6 +68,7 @@ public final class DriverFactory {
 		else if (browser.equalsIgnoreCase("safari")) {
 			if (runMode.equalsIgnoreCase(String.valueOf(RunMode.REMOTE))) {
 				capabilities.setBrowserName("safari");
+				capabilities.setVersion(version);
 				driver = new RemoteWebDriver(new URL(ConfigFactory.getConfig().remoteUrl()), capabilities);
 			} else {
 				WebDriverManager.safaridriver().setup();

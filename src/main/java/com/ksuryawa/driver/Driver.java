@@ -32,11 +32,11 @@ public class Driver {
 	 *
 	 * @author Kapil Suryawanshi
 	 */
-	public static void initDriver(BrowserType browser) {
+	public static void initDriver(BrowserType browser,String version) {
 		if (Objects.isNull(DriverManager.getDriver()))
 		{
 			try {
-				DriverManager.setDriver(DriverFactory.getDriver(browser.toString()));
+				DriverManager.setDriver(DriverFactory.getDriver(browser.toString(),version));
 			} catch (MalformedURLException e) {
 				throw new BrowserInvocationFailedException("Please check the capabilities of browser");
 			}

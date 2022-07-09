@@ -21,9 +21,11 @@ public class TestData {
 	private Boolean execute;
 	@Column(name="browser",index = 2,converterClass = StringToBrowserTypeConverter.class)
 	private BrowserType browser;
-	@Column(name="username",index = 3)
+	@Column(name = "version",index = 3)
+	private String version;
+	@Column(name="username",index = 4)
 	private String username;
-	@Column(name="password",index = 4)
+	@Column(name="password",index = 5)
 	private String password;
 
 }

@@ -24,7 +24,7 @@ public class BaseTest {
 	protected void setUp(Object[] data) {
 		TestData testData = (TestData) data[0];
 
-		Driver.initDriver(Objects.isNull(testData.getBrowser()) ? ConfigFactory.getConfig().browser() : testData.getBrowser());
+		Driver.initDriver(Objects.isNull(testData.getBrowser()) ? ConfigFactory.getConfig().browser() : testData.getBrowser(), testData.getVersion());
 
 	}
 
